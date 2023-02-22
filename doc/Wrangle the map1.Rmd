@@ -1,0 +1,110 @@
+---
+title: "Wrangle the map"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(dplyr)
+library(sp)
+library(rgdal)
+library(leaflet)
+library(readr)
+library(tidyr)
+library(httr)
+```
+
+```{r}
+# Select cols and convert certain columns to numeric datatype
+# Denote "price range" as "monthly_rent"
+# Denote "university" as "borough" or "neighborhood"
+# Since there are three buildings with same attributes each row, combine them to one data frame
+df <- read.csv('D:/DOF_Condominium_Comparable_Rental_Income_in_NYC.csv')
+df = df[, c(16, 20, 23, 31, 35, 38, 46, 50, 53)]
+df = df %>% mutate_at(c('Total.Units.1', 'Estimated.Gross.Income.1', 'Total.Units.2', 'Estimated.Gross.Income.2', 'Total.Units.3', 'Estimated.Gross.Income.3'), as.numeric)
+
+# Reshape data frame to long format
+df_long = pivot_longer(df, cols = everything(), names_to = c(".value", ".value", ".value"), names_pattern = "(.)(.)(.)")
+df_long$monthly_rent = df_long$Est/(12*df_long$Tot)
+df_long$bbl = gsub("-", "", df_long$Bor)
+df_price = df_long %>% group_by(bbl) %>% summarize(avg_rent = mean(monthly_rent))
+df_price = na.omit(df_price)
+df_price
+```
+
+```{r}
+#Get BBL to ziocode longitude latitude info
+qns_zip <- read_delim("C:/Users/28047/Downloads/DOF__Cooperative_Comparable_Rental_Income___Queens___FY_2011_2012.csv", delim = ",", locale = locale(encoding = "UTF-8"))
+man_zip <- read.csv('C:/Users/28047/Downloads/DOF__Condominium_comparable_rental_income___Manhattan_-_FY_2010_2011.csv')
+brx_zip <- read.csv('C:/Users/28047/Downloads/DOF__Condominium_Comparable_Rental_Income___Bronx___FY_2009_2010.csv')
+bro_zip <- read.csv('C:/Users/28047/Downloads/DOF__Condominium_comparable_rental_income___Brooklyn_-_FY_2010_2011.csv')
+si_zip <- read.csv('C:/Users/28047/Downloads/DOF__Condominium_Comparable_Rental_Income__Staten_Island___FY_2009_2010.csv')
+
+#Wrangle the dataset
+new_manzip <- pivot_longer(man_zip, cols = c(1,23,35), names_to = "new_col", values_to = "bbl") %>% select(bbl)
+man_info <- man_zip[c(5:7)]
+man_info <- man_info[rep(seq_len(nrow(man_info)), each = 3), ]
+man_map <- cbind(new_manzip,man_info)
+new_brozip <- pivot_longer(bro_zip, cols = c(1,23,35), names_to = "new_col", values_to = "bbl") %>% select(bbl)
+bro_info <- bro_zip[c(5:7)]
+bro_info <- bro_info[rep(seq_len(nrow(bro_info)), each = 3), ]
+bro_map <- cbind(new_brozip,bro_info)
+new_brxzip <- pivot_longer(brx_zip, cols = c(1,23,35), names_to = "new_col", values_to = "bbl") %>% select(bbl)
+brx_info <- brx_zip[c(5:7)]
+brx_info <- brx_info[rep(seq_len(nrow(brx_info)), each = 3), ]
+brx_map <- cbind(new_brxzip,brx_info)
+qns_zip <- qns_zip %>% filter(!is.na(Postcode))
+new_qnszip <- pivot_longer(qns_zip, cols = c(1,25,55), names_to = "new_col", values_to = "bbl") %>% select(bbl)
+qns_info <- qns_zip[c(4:6)]
+qns_info <- qns_info[rep(seq_len(nrow(qns_info)), each = 3), ]
+qns_map <- cbind(new_qnszip,qns_info)
+new_sizip <- pivot_longer(si_zip, cols = c(1,23,35), names_to = "new_col", values_to = "bbl") %>% select(bbl)
+si_info <- si_zip[c(5:7)]
+si_info <- si_info[rep(seq_len(nrow(si_info)), each = 3), ]
+si_map <- cbind(new_sizip,si_info)
+
+final_map <- rbind(man_map,bro_map,brx_map,qns_map,si_map)
+final_map <- final_map %>% drop_na()
+rownames(final_map) <- 1:nrow(final_map)
+
+#Get longitude, latitude info and average monthly rent by BBL
+nyc_avg <- df_new %>% group_by(Boro.Block.Lot) %>% summarize(avg_rent = mean(monthly_rent))
+lng_lat <- final_map %>% group_by(bbl) %>% summarize(lng = mean(Longitude), lat=mean(Latitude))
+nyc1 <- merge(nyc_avg,lng_lat,by.x='Boro.Block.Lot',by.y='bbl')
+nyc2 <- anti_join(nyc_avg, nyc1, by = "Boro.Block.Lot")
+nyc2$BBL <- gsub("-", "", nyc2$Boro.Block.Lot)
+```
+
+```{r}
+#Get restaurant grade and BBL info from df2
+#Sum up Grade A
+df2 <- read.csv('D:/temp/Columbia/Applied ds/Project2-Shiny app/raw material/DOHMH_New_York_City_Restaurant_Inspection_Results.csv',na.strings = c("", "NA"))
+df2 <- df2[,c('CAMIS','GRADE','BBL','Latitude','Longitude')]
+grade <- na.omit(df2)  
+grade <- grade %>%
+  group_by(CAMIS) %>%
+  slice(1) %>%
+  ungroup()
+grade$A <- ifelse(grade$GRADE=='A',1,0)
+grade <- grade %>% group_by(BBL) %>% summarize(tot_A = sum(A),lng = mean(Longitude), lat=mean(Latitude))
+```
+
+```{r}
+#Merge longitude and latitude info
+nyc3 <- merge(nyc2,grade,by='BBL')
+nyc3 <- nyc3[,c('avg_rent','lng','lat')]
+nyc1 <- nyc1[,c('avg_rent','lng','lat')]
+nyc <- rbind(nyc1,nyc3)
+nyc <- nyc %>% drop_na()
+```
+
+```{r}
+#Export dataset
+write.csv(nyc,'D:/nyc.csv')
+write.csv(grade,'D:/grade.csv')
+```
