@@ -1,0 +1,13 @@
+name: UrbanScout
+title: UrbanScout
+username:
+account: 2023-spring-ads-project2-group9
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8379491
+bundleId: 6873334
+url: https://2023-spring-ads-project2-group9.shinyapps.io/UrbanScout/
+when: 1677049444.89356
+lastSyncTime: 1677049444.89356
+asMultiple: FALSE
+asStatic: FALSE
