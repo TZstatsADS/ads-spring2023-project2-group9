@@ -4,7 +4,7 @@
 
 Term: Spring 2023
 
-![screenshot](doc/figs/intro.jpg) 
+![screenshot](doc/figs/homepage.jpg) 
 
 The **learning goals** for this project is:
 
