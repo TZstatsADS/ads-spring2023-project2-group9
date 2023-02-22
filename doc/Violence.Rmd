@@ -1,0 +1,110 @@
+---
+title: "Violence"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**(4) Violence - Distribution Plot by Borough **
+```{r}
+library("dplyr")
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+vio = read.csv('https://raw.githubusercontent.com/TZstatsADS/ads-spring2023-project2-group9/main/data/Family_Violence_Related_Snapshots__New_York_City_Community_Board_Districts.csv?token=GHSAT0AAAAAAB6CUOFUG3ZRPFG2PUPT5QU6Y7VUQZA', header=T)
+vio = vio %>% rename("Year" = "Report_Year", "Boro" = "Comm_Dist_.Boro") # Make it easier to read
+```
+
+**Violence - Bar Graph **
+```{r}
+# Aggregate data by Borough and Year
+# Sum the amount of each violence each year for each borough
+df_vio = vio %>% group_by(Boro,Year) %>% 
+  summarise(fam_dir_sum = sum(FAM_DIR),
+            fam_ast_sum = sum(FAM_Fel_Assault),
+            dv_ast_sum = sum(DV_Fel_Assault),
+            rp_sum = sum(FAM_Rape, DV_Rape),
+            .groups = "drop")
+```
+
+
+```{r}
+# A function used for filtering borough
+filter_boro = function(df, boro){
+  df_filtered = df %>% filter(Boro == boro)
+  return(df_filtered)
+}
+```
+
+```{r}
+df_filtered = df_vio %>% 
+  filter(Boro == "Bronx") %>% 
+  pivot_longer(cols = fam_dir_sum:rp_sum, names_to = "crime_type", values_to = "count")
+
+ggplot(df_filtered, aes(x = Year, y = count, fill = crime_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("goldenrod1", "darkolivegreen3", "lightskyblue1", "sienna1")) +
+  ggtitle("Violence in Bronx") +
+  labs(x = "Year", y = "Count", fill = "Crime Type") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+df_filtered = df_vio %>% 
+  filter(Boro == "Brooklyn") %>% 
+  pivot_longer(cols = fam_dir_sum:rp_sum, names_to = "crime_type", values_to = "count")
+
+ggplot(df_filtered, aes(x = Year, y = count, fill = crime_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("goldenrod1", "darkolivegreen3", "lightskyblue1", "sienna1")) +
+  ggtitle("Violence in Brooklyn") +
+  labs(x = "Year", y = "Count", fill = "Crime Type") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+df_filtered = df_vio %>% 
+  filter(Boro == "Manhattan") %>% 
+  pivot_longer(cols = fam_dir_sum:rp_sum, names_to = "crime_type", values_to = "count")
+
+ggplot(df_filtered, aes(x = Year, y = count, fill = crime_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("goldenrod1", "darkolivegreen3", "lightskyblue1", "sienna1")) +
+  ggtitle("Violence in Manhattan") +
+  labs(x = "Year", y = "Count", fill = "Crime Type") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+df_filtered = df_vio %>% 
+  filter(Boro == "Queens") %>% 
+  pivot_longer(cols = fam_dir_sum:rp_sum, names_to = "crime_type", values_to = "count")
+
+ggplot(df_filtered, aes(x = Year, y = count, fill = crime_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("goldenrod1", "darkolivegreen3", "lightskyblue1", "sienna1")) +
+  ggtitle("Violence in Queens") +
+  labs(x = "Year", y = "Count", fill = "Crime Type") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+df_filtered = df_vio %>% 
+  filter(Boro == "Staten Island") %>% 
+  pivot_longer(cols = fam_dir_sum:rp_sum, names_to = "crime_type", values_to = "count")
+
+ggplot(df_filtered, aes(x = Year, y = count, fill = crime_type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("goldenrod1", "darkolivegreen3", "lightskyblue1", "sienna1")) +
+  ggtitle("Violence in Staten Island") +
+  labs(x = "Year", y = "Count", fill = "Crime Type") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+write.csv(df_vio, 'Processed_Violence.csv', row.names=FALSE)
+```
+
