@@ -10,7 +10,7 @@ Post your title, team members, project abstract and a contribution statement in 
 
 **Project 2: UrbanScout**
 
-Team members: Xinming Pan, Ananya Tinaikar, Hongyan Zhou, Wenchang Zhu
+Team members: Xinming Pan, Ananya Tinaikar, Hongyan Zhou, Wenchang Zhu, Yiming Zhu
 
 Summary:
 + In this second project of GR5243 Applied Data Science, we develop an *UrbanScout* shiny app on **NYC Accommodation Selection** using NYC open data released on the [NYC Open Data By Agency](https://opendata.cityofnewyork.us/data/) website.
