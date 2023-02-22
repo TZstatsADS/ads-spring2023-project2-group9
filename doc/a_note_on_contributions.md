@@ -13,7 +13,7 @@ Sample project README statement.
 
 Project 2: UrbanScout
 
-Team members: Xinming Pan, Hongyan Zhou, Ananya Tinaikar
+Team members: Xinming Pan, Ananya Tinaikar, Hongyan Zhou, Wenchang Zhu
 
 Summary:
 + In this second project of GR5243 Applied Data Science, we develop an *UrbanScout* shiny app on **NYC Accommodation Selection** using NYC open data released on the [NYC Open Data By Agency](https://opendata.cityofnewyork.us/data/) website.
@@ -37,13 +37,14 @@ Designed the idea of this project, and found all the needed data;
 
 Managed and listed out the workflow and the look of this Shiny App; 
 
-Wrangled traffic data to generate morningtraffic.csv, eveningtraffic.csv and all the plots needed in Traffic section;
+Wrangled traffic data to generate morningtraffic.csv, eveningtraffic.csv and all the plots in Traffic section;
 
 Helped to visualize restaurant data in Grade A Restaurant section;
 
 Wrangled monthly rent data, and created interactive map;
 
 Modified the look of Shiny App.
+
 
 + Ananya Tinaikar:
 
@@ -53,4 +54,19 @@ Merged disparate violence datasets/columns into four umbrella categories;
 
 Helped visualize violence data by borough and across years; 
 
-Wrote introduction + title for Shiny App;  
+Wrote introduction + title for Shiny App;
+
+
++ Wenchang Zhu:
+
+Analyzed rental price data and used reliable methodology to calculate monthly rent;
+
+Helped wrangle violence data to generate processed_violence.csv and visualized all the plots in Violence section;
+
+Wrangled restaurant data to generate the plot in Grade A Restaurant section;
+
+Helped to create the interactive map;
+
+Designed the menu bar and the appearance of the Shiny app, including all the background images and name of the app; 
+
+Wrote README.md.
