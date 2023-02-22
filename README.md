@@ -18,12 +18,12 @@ The **learning goals** for this project is:
 
 *The above general statement about project 2 can be removed once you are finished with your project. It is optional.
 
-## Project Title Lorem ipsum dolor sit amet
+## Project Title **UrbanScout**
 Term: Spring 2023
 
-+ Team #
++ Team #9
 + **Projec title**: + Team members
-	+ team member 1
+	+ team member 1: Xinming Pan
 	+ team member 2
 	+ team member 3
 	+ team member 4
