@@ -49,6 +49,8 @@ Modified the look of Shiny App.
 
 Wrangled data for Partner and intimate violence datasets; 
 
+Merged disparate violence datasets/columns into four umbrella categories;
+
 Helped visualize violence data by borough and across years; 
 
-Wrote introduction for Shiny App;  
+Wrote introduction + title for Shiny App;  
