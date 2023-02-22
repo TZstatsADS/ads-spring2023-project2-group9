@@ -6,12 +6,9 @@ Therefore, you are required to post a *contribution statement* in the root READM
 
 Post your title, team members, project abstract and a contribution statement in the README.md file.  This is a common practice for research scientific journals. 
 
-Below is an example. If no contribution statement is provided, we will insert a default statement that goes "**All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement**. "
-
 ---
-Sample project README statement.
 
-Project 2: UrbanScout
+**Project 2: UrbanScout**
 
 Team members: Xinming Pan, Ananya Tinaikar, Hongyan Zhou, Wenchang Zhu
 
@@ -31,13 +28,13 @@ Managed and published the GitHub repository;
 Generated the URL of the App.
 
 
-+ Hongyan Zhou: 
++ Hongyan Zhou:
 
 Designed the idea of this project, and found all the needed data; 
 
 Managed and listed out the workflow and the look of this Shiny App; 
 
-Wrangled traffic data to generate morningtraffic.csv, eveningtraffic.csv and all the plots in Traffic section;
+Wrangled traffic data to generate *morningtraffic.csv*, *eveningtraffic.csv* and all the plots in Traffic section;
 
 Helped to visualize restaurant data in Grade A Restaurant section;
 
@@ -59,14 +56,14 @@ Wrote introduction + title for Shiny App;
 
 + Wenchang Zhu:
 
-Analyzed rental price data and used reliable methodology to calculate monthly rent;
+Analyzed and wrangled rental price data and used reliable methodology to calculate monthly rent;
 
-Helped wrangle violence data to generate processed_violence.csv and visualized all the plots in Violence section;
+Helped wrangle violence data to generate *processed_violence.csv* and visualized all the plots in Violence section;
 
 Wrangled restaurant data to generate the plot in Grade A Restaurant section;
 
 Helped to create the interactive map;
 
-Designed the menu bar and the appearance of the Shiny app, including all the background images and name of the app; 
+Designed the menu bar and the backgrounds of the Shiny app; 
 
 Wrote README.md.
