@@ -67,3 +67,14 @@ Helped to create the interactive map;
 Designed the menu bar and the backgrounds of the Shiny app; 
 
 Wrote README.md.
+
+
++ Yiming Zhu:
+
+Implemented the UI and server of the app;
+
+Designed the fronten of the app;
+
+Implemented the reactive plot;
+
+Connected the dataset to the server;
