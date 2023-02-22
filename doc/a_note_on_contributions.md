@@ -23,13 +23,20 @@ Summary:
 [Contribution Statement] 
 Xinming Pan: 
 Designed the Shiny App, including the basic frame and figures of the App; 
+
 Managed and published the GitHub repository; 
+
 Generated the URL of the App.
 
 Hongyan Zhou: 
 Designed the idea of this project, and found all the needed data; 
+
 Managed and listed out the workflow and the look of this Shiny App; 
+
 Wrangled traffic data to generate morningtraffic.csv, eveningtraffic.csv and all the plots needed in Traffic section;
+
 Helped to visualize restaurant data in Grade A Restaurant section;
+
 Wrangled monthly rent data, and created interactive map;
+
 Modified the look of Shiny App.
