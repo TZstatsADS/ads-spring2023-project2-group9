@@ -21,14 +21,18 @@ Summary:
 + Better Homes Means Better Learners!
 
 [Contribution Statement] 
-Xinming Pan: 
+
++ Xinming Pan: 
+
 Designed the Shiny App, including the basic frame and figures of the App; 
 
 Managed and published the GitHub repository; 
 
 Generated the URL of the App.
 
-Hongyan Zhou: 
+
++ Hongyan Zhou: 
+
 Designed the idea of this project, and found all the needed data; 
 
 Managed and listed out the workflow and the look of this Shiny App; 
