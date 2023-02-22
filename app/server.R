@@ -18,16 +18,16 @@ library(rgdal)
 library(leaflet)
 
 
-df_counts <- read_csv('df_counts.csv')
-df_res <- read_csv('df_res.csv')
-df_vio <- read.csv('Processed_Violence.csv', header=T)
+df_counts <- read_csv('../output/df_counts.csv')
+df_res <- read_csv('../output/df_res.csv')
+df_vio <- read.csv('../output/Processed_Violence.csv', header=T)
 ################################################
 ################################################
-grade_rent <- read.csv("grade_rent.csv")
+grade_rent <- read.csv("../output/grade_rent.csv")
 coordinates(grade_rent) = c("lng","lat")
 crs.geo1 = CRS("+proj=longlat")  
 proj4string(grade_rent) = crs.geo1 
-newyork <- readOGR('nyu_2451_34509.shp')
+newyork <- readOGR('../data/nyu_2451_34509.shp')
 proj4string(newyork) = crs.geo1
 nyc_agg = aggregate(x=grade_rent["avg_rent"],by=newyork,FUN=function(x) round(mean(x), 2))
 nyc_agg2 = aggregate(x=grade_rent["tot_A"],by=newyork,FUN=function(x) sum(x))
