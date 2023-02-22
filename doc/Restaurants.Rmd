@@ -1,0 +1,73 @@
+---
+title: "Restaurants"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r}
+# Create the data frame of restaurant inspection
+# Keep only one record of each restaurant and drop NA rows
+
+restaurant <- read.csv("D:/temp/Columbia/Applied ds/Project2-Shiny app/raw material/DOHMH_New_York_City_Restaurant_Inspection_Results.csv", header=T, sep=",")
+res_new <- restaurant %>% 
+  filter(INSPECTION.DATE>'01/01/1900' & BORO!='0' & BORO!='210' & GRADE!='') %>%
+  group_by(CAMIS) %>%
+  slice(1) %>%
+  ungroup()
+df_res = res_new[, c('CAMIS', 'GRADE', 'BORO')]
+df_res = na.omit(df_res)
+df_res
+```
+
+```{r}
+# Let grades other than A, B, and C be OTHER
+df_res$grade = ifelse((df_res$GRADE=='A')|(df_res$GRADE=='B')|(df_res$GRADE=='C'), df_res$GRADE, 'OTHER')
+
+counts = table(df_res$BORO, df_res$grade)
+total = rowSums(counts)
+A_amounts = counts[, "A"]
+ratios = A_amounts/total
+
+# Create a new data frame of counts and ratios
+boro = c('Bronx', 'Brooklyn', 'Manhattan', 'Queens', 'Staten Island')
+df_counts = as.data.frame.matrix(counts)
+df_counts$Ratios = ratios
+df_counts$Borough = boro
+df_counts
+```
+```{r}
+## Data visualization
+library(ggplot2)
+
+# Create the bar plot
+
+# Add a line and points for the portion of A
+p <- ggplot() + geom_col(aes(x = as.factor(BORO), y = 1, fill = grade), data = df_res, group = 1, position = "stack")
+p + geom_line(aes(x = as.factor(df_counts$Borough), y = 10000*df_counts$Ratios, group = 1), color = "red",lwd=1)+ 
+    geom_point(aes(x = as.factor(df_counts$Borough), y = 10000*df_counts$Ratios), color = "black") +
+    scale_fill_manual(values=c("OTHER"='#E0A96D', "A"='#DDC3A5', "B"='gray24', "C"='seashell1')) +
+    labs(title= "Restaurants Grade Distribution", x = "Borough", y = "Counts") +
+    guides(fill=guide_legend(title="GRADE")) +
+    scale_y_continuous(sec.axis=sec_axis(~.*1/9000, name="Ratios of Grade A")) +
+    scale_color_manual(values = hcl(100, 100, 100)) +
+    theme(plot.title = element_text(hjust = 0.5)) 
+```
+
+```{r}
+#export dataset
+write.csv(df_res, "D:\\df_res.csv", row.names=FALSE)
+write.csv(df_counts, "D:\\df_counts.csv", row.names=FALSE)
+```
+
