@@ -72,8 +72,8 @@ df_counts
 
 df_counts
 #export dataset
-write.csv(df_res, "df_res.csv", row.names=FALSE)
-write.csv(df_counts, "df_counts.csv", row.names=FALSE)
+write.csv(df_res, "../output/df_res.csv", row.names=FALSE)
+write.csv(df_counts, "../output/df_counts.csv", row.names=FALSE)
 
 
 ggplot() + geom_col(aes(x = as.factor(BORO), y = 1, fill = grade), data = df_res, group = 1, position = "stack")+ geom_line(aes(x = as.factor(df_counts$Borough), y = 39000*df_counts$Ratios, group = 1), color = "red",lwd=1)+ 
@@ -130,7 +130,7 @@ lines(x, m4$si, col="darkseagreen1", lwd=3, lty=1)
 legend('topleft',legend=c("Manhattan","Brooklyn","Bronx",'Queens','Staten Island'), col=c("cornflowerblue","firebrick2","burlywood1",'blueviolet','darkseagreen1'),
        lwd=3,pch=c(1,8,3,5,7),cex=1,lty=1,ncol=1)
 
-write.csv(m4, "morningtraffic.csv", row.names=FALSE)
+write.csv(m4, "../output/morningtraffic.csv", row.names=FALSE)
 
 
 traffic2 <- read.csv("../data/Automated_Traffic_Volume_Counts2.csv", header=T, sep=",")
@@ -177,7 +177,7 @@ lines(x2, m24$si, col="darkseagreen1", lwd=3, lty=1)
 legend('topleft',legend=c("Manhattan","Brooklyn","Bronx",'Queens','Staten Island'), col=c("cornflowerblue","firebrick2","burlywood1",'blueviolet','darkseagreen1'),
        lwd=3,pch=c(1,8,3,5,7),cex=1,lty=1,ncol=1)
 
-write.csv(m24, "eveningtraffic.csv", row.names=FALSE)
+write.csv(m24, "../output/eveningtraffic.csv", row.names=FALSE)
 
 
 ########################################

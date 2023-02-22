@@ -48,9 +48,9 @@ labels <- sprintf(
 
 colnames(df_vio) <- c("Boro", "Year", "Family Felony Assaults", "Domestic Violence Felony Assaults", "Domestic Violence Incident", "Rape")
 ###traffic
-traffic <- read.csv("morningtraffic.csv")
+traffic <- read.csv("../output/morningtraffic.csv")
 colnames(traffic) <- c("time", "Manhattan", "Brooklyn", "Bronx", "Queens", "Staten Island")
-traffic2 <- read.csv("eveningtraffic.csv")
+traffic2 <- read.csv("../output/eveningtraffic.csv")
 colnames(traffic2) <- c("time", "Manhattan", "Brooklyn", "Bronx", "Queens", "Staten Island")
 
 ### colors
