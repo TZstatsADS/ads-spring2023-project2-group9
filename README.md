@@ -33,7 +33,7 @@ Term: Spring 2023
 
 + [**Shiny App Link**](https://2023-spring-ads-project2-group9.shinyapps.io/UrbanScout/)
 
-+ **Contribution statement**: View the attached file in doc. All team members approve our work presented in this GitHub repository including this contributions statement. 
++ **Contribution statement**: View a_note_in_contributions.md in doc. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
