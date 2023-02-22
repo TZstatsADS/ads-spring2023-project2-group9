@@ -38,8 +38,12 @@ library(readr)
 
 # Create the data frame of restaurant inspection
 # Keep only one record of each restaurant and drop NA rows
-restaurant <- read.csv("DOHMH_New_York_City_Restaurant_Inspection_Results.csv", header=T, sep=",")
-res_new <- restaurant %>% filter(INSPECTION.DATE>'01/01/1900' & BORO!='0' & BORO!='210' & GRADE!='') %>% group_by(DBA)
+restaurant <- read.csv("../data/DOHMH_New_York_City_Restaurant_Inspection_Results.csv", header=T, sep=",")
+res_new <- res_new <- restaurant %>% 
+  filter(INSPECTION.DATE>'01/01/1900' & BORO!='0' & BORO!='210' & GRADE!='') %>%
+  group_by(CAMIS) %>%
+  slice(1) %>%
+  ungroup()
 df_res = res_new[, c('CAMIS', 'GRADE', 'BORO')]
 df_res = na.omit(df_res)
 df_res
