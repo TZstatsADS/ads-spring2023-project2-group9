@@ -31,7 +31,7 @@ Term: Spring 2023
 	+ The purpose of this app is to help college students easily visualize rental prices in NYC, along with other lifestyle statistics (e.g. crime rates, traffic, restaurants, etc.) to help them make an informed decision about their accommodations.
 	+ Better Homes Means Better Learners!
 
-+ [**Shiny App Link**](?????????)
++ [**Shiny App Link**](https://2023-spring-ads-project2-group9.shinyapps.io/UrbanScout/)
 
 + **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
