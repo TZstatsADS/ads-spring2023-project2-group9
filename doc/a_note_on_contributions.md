@@ -21,11 +21,22 @@ Summary:
 
 + Xinming Pan: 
 
-Designed the Shiny App, including the basic frame and figures of the App; 
+Designed and implemented the Shiny App, including the basic frame and figures of the App; 
 
 Managed and published the GitHub repository; 
 
-Generated the URL of the App.
+Deployed the app and generated an URL.
+
+
++ Ananya Tinaikar:
+
+Wrangled data for Partner and intimate violence datasets; 
+
+Merged disparate violence datasets/columns into four umbrella categories;
+
+Helped visualize violence data by borough and across years; 
+
+Wrote introduction + title for Shiny App.
 
 
 + Hongyan Zhou:
@@ -41,17 +52,6 @@ Helped to visualize restaurant data in Grade A Restaurant section;
 Wrangled monthly rent data, and created interactive map;
 
 Modified the look of Shiny App.
-
-
-+ Ananya Tinaikar:
-
-Wrangled data for Partner and intimate violence datasets; 
-
-Merged disparate violence datasets/columns into four umbrella categories;
-
-Helped visualize violence data by borough and across years; 
-
-Wrote introduction + title for Shiny App;
 
 
 + Wenchang Zhu:
@@ -77,4 +77,4 @@ Designed the fronten of the app;
 
 Implemented the reactive plot;
 
-Connected the dataset to the server;
+Connected the dataset to the server.
