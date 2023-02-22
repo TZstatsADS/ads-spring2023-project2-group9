@@ -17,7 +17,7 @@ The **learning goals** for this project is:
 ## Project Title: UrbanScout
 Term: Spring 2023
 
-+ Team # Group 9
++ **Team #** Group 9
 + **Team Members**
 	+ Xinming Pan
 	+ Ananya Tinaikar
